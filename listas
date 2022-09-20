@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 
 List<estudiante> ListaEstudiantes = new List <estudiante>();
-ListaEstudiantes.Add(new estudiante("micaaela", "gomez",2011,5));
-ListaEstudiantes.Add(new estudiante("laura","alvarez", 2011,3));
+ListaEstudiantes.Add(new estudiante());
+ListaEstudiantes.Add(new estudiante());
+
+
 
 foreach(estudiante est in ListaEstudiantes){
     est.mostrar();
@@ -26,6 +28,7 @@ foreach (estudiante est in ListaEstudiantes)
         Console.WriteLine("Estudiante eliminado");
         return;
     }
+    else { Console.WriteLine("Estudiante no existe"); }
 }
 
 
@@ -37,20 +40,32 @@ class estudiante
     protected int año;
     protected int nota;
 
-    public estudiante() { }
+    public estudiante() {
+        Console.WriteLine("\nIngrese nombre");
+        this.nombre = Console.ReadLine();
+        Console.WriteLine("Ingrese apellido");
+        this.apellido = Console.ReadLine();
+        Console.WriteLine("Ingrese año");
+        this.año = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Ingrese nota ");
+        this.nota = Convert.ToInt32(Console.ReadLine());
+    }
 
+    
+  
     public estudiante(string nombre, string apellido,int año, int nota)
     {
         this.nombre = nombre;
         this.apellido = apellido;
         this.año = año;
         this.nota = nota;
-        Console.WriteLine("Estudiante creado");
         
     }
+    
+    
     public  void mostrar()
     {
-        Console.WriteLine("Nombre= "+ nombre);
+        Console.WriteLine("\n\nNombre= "+ nombre);
         Console.WriteLine("Apellido= "+apellido);
         Console.WriteLine("Año= "+año);
         Console.WriteLine("Nota= " + nota + "\n");
@@ -70,7 +85,5 @@ class estudiante
     {
         return this.apellido;
     }
-    
-    
-    
+  
 }
