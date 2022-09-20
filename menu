@@ -1,0 +1,107 @@
+using System.Collections.Generic;
+
+List<estudiante> ListaEstudiantes = new List <estudiante>();
+ListaEstudiantes.Add(new estudiante());
+ListaEstudiantes.Add(new estudiante());
+
+int opcion = 0;
+Console.WriteLine("Menu de opciones");
+Console.WriteLine("Ingrese 1 para mostrar lista");
+Console.WriteLine("Ingrese 2 para mostrar desaprobados");
+Console.WriteLine("Ingrese 3 para eliminar alumno");
+
+opcion = Convert.ToInt32(Console.ReadLine());
+
+
+
+switch (opcion)
+{
+    case 1:
+        foreach (estudiante est in ListaEstudiantes)
+        {
+            est.mostrar();
+        }
+        break;
+    case 2:
+        foreach (estudiante est in ListaEstudiantes)
+        {
+            est.desaprobado();
+        }
+        break;
+    case 3:
+        string apellido = "";
+        Console.WriteLine("Ingrese apellido que desea eliminar");
+        apellido = Console.ReadLine();
+
+
+        foreach (estudiante est in ListaEstudiantes)
+        {
+            if (apellido == est.getapellido())
+            {
+                ListaEstudiantes.Remove(est);
+                Console.WriteLine("Estudiante eliminado");
+                return;
+            }
+        }
+        break;
+}
+
+
+
+
+
+
+class estudiante
+{
+    protected string nombre;
+    protected string apellido;
+    protected int año;
+    protected int nota;
+
+    public estudiante() {
+        Console.WriteLine("\nIngrese nombre");
+        this.nombre = Console.ReadLine();
+        Console.WriteLine("Ingrese apellido");
+        this.apellido = Console.ReadLine();
+        Console.WriteLine("Ingrese año");
+        this.año = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Ingrese nota ");
+        this.nota = Convert.ToInt32(Console.ReadLine());
+    }
+
+    
+  
+    public estudiante(string nombre, string apellido,int año, int nota)
+    {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.año = año;
+        this.nota = nota;
+        
+    }
+    
+    
+    public  void mostrar()
+    {
+        Console.WriteLine("\n\nNombre= "+ nombre);
+        Console.WriteLine("Apellido= "+apellido);
+        Console.WriteLine("Año= "+año);
+        Console.WriteLine("Nota= " + nota + "\n");
+    }
+
+    public  void desaprobado()
+    {
+        if (this.nota < 6)
+        {
+            Console.WriteLine("DESAPROBADO " );
+            Console.WriteLine("Nombre= " + nombre);
+            Console.WriteLine("Apellido= " + apellido+ "\n");
+        }
+    }
+
+    public string getapellido()
+    {
+        return this.apellido;
+    }
+  
+}
