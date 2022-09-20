@@ -1,0 +1,76 @@
+using System.Collections.Generic;
+
+List<estudiante> ListaEstudiantes = new List <estudiante>();
+ListaEstudiantes.Add(new estudiante("micaaela", "gomez",2011,5));
+ListaEstudiantes.Add(new estudiante("laura","alvarez", 2011,3));
+
+foreach(estudiante est in ListaEstudiantes){
+    est.mostrar();
+}
+
+foreach(estudiante est in ListaEstudiantes)
+{
+    est.desaprobado();
+}
+
+string apellido = "";
+Console.WriteLine("Ingrese apellido que desea eliminar");
+apellido = Console.ReadLine(); 
+
+
+foreach (estudiante est in ListaEstudiantes)
+{
+    if(apellido == est.getapellido())
+    {
+        ListaEstudiantes.Remove(est);
+        Console.WriteLine("Estudiante eliminado");
+        return;
+    }
+}
+
+
+
+class estudiante
+{
+    protected string nombre;
+    protected string apellido;
+    protected int año;
+    protected int nota;
+
+    public estudiante() { }
+
+    public estudiante(string nombre, string apellido,int año, int nota)
+    {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.año = año;
+        this.nota = nota;
+        Console.WriteLine("Estudiante creado");
+        
+    }
+    public  void mostrar()
+    {
+        Console.WriteLine("Nombre= "+ nombre);
+        Console.WriteLine("Apellido= "+apellido);
+        Console.WriteLine("Año= "+año);
+        Console.WriteLine("Nota= " + nota + "\n");
+    }
+
+    public  void desaprobado()
+    {
+        if (this.nota < 6)
+        {
+            Console.WriteLine("DESAPROBADO " );
+            Console.WriteLine("Nombre= " + nombre);
+            Console.WriteLine("Apellido= " + apellido+ "\n");
+        }
+    }
+
+    public string getapellido()
+    {
+        return this.apellido;
+    }
+    
+    
+    
+}
